@@ -42,9 +42,14 @@ pipeline {
 
         stage('Security Scan') {
             steps {
-                bat "${VIRTUAL_ENV}\\Scripts\\activate && bandit -r ."
+                bat """
+                set PYTHONIOENCODING=utf-8
+                call ${VIRTUAL_ENV}\\Scripts\\activate
+                bandit -r .
+                """
             }
         }
+
 
         stage('Deploy') {
             steps {
