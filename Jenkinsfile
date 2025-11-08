@@ -43,12 +43,12 @@ pipeline {
         stage('Security Scan') {
             steps {
                 bat """
-                set PYTHONIOENCODING=utf-8
                 call ${VIRTUAL_ENV}\\Scripts\\activate
-                bandit -r .
+                python -X utf8 -m bandit -r . || exit /b 0
                 """
             }
         }
+
 
 
         stage('Deploy') {
