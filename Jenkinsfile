@@ -32,12 +32,13 @@ pipeline {
         stage('Coverage') {
             steps {
                 bat """
-                ${VIRTUAL_ENV}\\Scripts\\activate &&
-                coverage run -m pytest &&
+                call ${VIRTUAL_ENV}\\Scripts\\activate
+                coverage run -m pytest
                 coverage report
                 """
             }
         }
+
 
         stage('Security Scan') {
             steps {
